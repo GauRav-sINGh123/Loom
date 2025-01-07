@@ -47,7 +47,10 @@ const userSchema = new Schema({
    link:{
        type:String,
        default:""
-   }
+   },
+   refreshToken:{
+    type:String
+ }
 },{timestamps:true})
 
 userSchema.pre("save",async function(next){

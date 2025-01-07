@@ -57,3 +57,28 @@ export const signup=asyncHandler(async(req,res)=>{
 
 })
 
+export const signin=asyncHandler(async(req,res)=>{
+  const {email,password}=req.body;
+  if ([email, password].some((field) => field?.trim() === "")) {
+    return res.status(400).json(new ApiResponse(400, null, "All fields are required"));
+  }
+
+  const user=await User.findOne({email});
+ 
+  if (!user) {
+    return res.status(401).json(new ApiResponse(401, null, "User not found"));
+  }
+
+  const isPasswordCorrect=await user.isPasswordCorrect(password);
+
+  if (!isPasswordCorrect) {
+   return res.status(401).json(new ApiResponse(401, null, "Invalid credentials"));
+  }
+
+  const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(user._id);
+  setCookies(res, accessToken, refreshToken);
+
+  const loggedInUser=await User.findOne(user._id).select("-password -refreshToken");
+
+  return res.status(200).json(new ApiResponse(200, loggedInUser, "User logged in successfully"));
+})

@@ -32,12 +32,13 @@ export const signup = asyncHandler(async (req, res) => {
       });
   }
 
+  // Creates a new user
+  const user = await User.create({ username, email, password, name });
+  
   const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
     expiresIn: "1d",
   });
-  // Creates a new user
-  const user = await User.create({ username, email, password, name });
-
+  
   if (!user) {
     return res
       .status(500)

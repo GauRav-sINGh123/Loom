@@ -42,14 +42,7 @@ export const signin = asyncHandler(async (req, res) => {
      
   })
   res.status(200).json({
-    success: true,
     message: "Login successful",
-    user: {
-      _id: user._id,
-      username: user.username,
-      email: user.email,
-      name: user.name,
-    }
   });
 
 });

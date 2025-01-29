@@ -1,6 +1,10 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
+import { sendWelcomeEmail } from "../emails/email.handler.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export const signin = asyncHandler(async (req, res) => {});
 
@@ -52,8 +56,16 @@ export const signup = asyncHandler(async (req, res) => {
     secure: process.env.NODE_ENV === "production",
   });
 
+  const profileUrl = `${process.env.CLIENT_URL}/${user.username}`;
+ 
+  try {
+    await sendWelcomeEmail(user.email, user.name,profileUrl);
+  } catch (error) {
+    console.error("Error sending email:", error);
+    throw new Error(error.message);
+  }
 
-  return res.status(201).json({
+   res.status(201).json({
     success: true,
     message: "User created successfully",
   });

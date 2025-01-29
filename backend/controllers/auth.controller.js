@@ -119,3 +119,8 @@ export const logout = asyncHandler(async (req, res) => {
   });
 
 });
+
+
+export const getCurrentUser = asyncHandler(async (req, res) => {
+   req.json(user);
+});

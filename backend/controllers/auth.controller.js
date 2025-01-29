@@ -6,7 +6,53 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export const signin = asyncHandler(async (req, res) => {});
+export const signin = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res
+      .status(400)
+      .json({ success: false, message: "All fields are required" });
+  }
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res
+      .status(401)
+      .json({ success: false, message: "Invalid email or password" });
+  }
+  const isPasswordCorrect = await user.isPasswordCorrect(password);
+
+  if (!isPasswordCorrect) {
+    return res
+      .status(401)
+      .json({ success: false, message: "Invalid Password" });
+  }
+
+  const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+    expiresIn: "1d",
+  });
+
+  await res.cookie("token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+    maxAge: 24 * 60 * 60 * 1000,
+     
+  })
+  res.status(200).json({
+    success: true,
+    message: "Login successful",
+    user: {
+      _id: user._id,
+      username: user.username,
+      email: user.email,
+      name: user.name,
+    }
+  });
+
+});
 
 export const signup = asyncHandler(async (req, res) => {
   const { username, email, password, name } = req.body;
@@ -78,4 +124,5 @@ export const logout = asyncHandler(async (req, res) => {
     success: true,
     message: "User logged out successfully",
   });
+
 });

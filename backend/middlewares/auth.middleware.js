@@ -3,7 +3,7 @@ import User from "../models/user.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
 export const isProtected =asyncHandler(async (req, res, next) => {
-    const token = req.cookies("token");
+    const token = req.cookies["token"];
 
     if (!token) {
         return res.status(401).json({

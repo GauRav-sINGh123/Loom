@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import cloudinary from "../utils/cloudinary.js";
 
 
 export const getSuggestedUsers=asyncHandler(async(req,res)=>{
@@ -48,7 +49,16 @@ export const getUserProfile=asyncHandler(async(req,res)=>{
 export const updateUserProfile = asyncHandler(async (req, res) => {
     const userId = req.user._id;
     const updates = req.body; // Extract all fields from request body
+     
+    if(req.body.profilePicture){
+        const result=await cloudinary.uploader.upload(req.body.profilePicture)
+        updates.profilePicture=result.secure_url
+    }
 
+    if(req.body.bannerImage){
+        const result=await cloudinary.uploader.upload(req.body.bannerImage)
+        updates.bannerImage=result.secure_url
+    }
     // Remove any undefined or empty fields
     for (const key in updates) {
         if (updates[key] === undefined || updates[key] === "") {

@@ -1,13 +1,17 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
- 
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 const app=express();
 
 app.use(cors({
     origin:process.env.CORS_ORIGIN,
-    credentials:true
+    credentials:true,
+    methods: ["GET", "POST", "PUT", "DELETE"], // ✅ Allow all necessary methods
+    allowedHeaders: ["Content-Type", "Authorization"], // ✅ Allow headers
 }));
 
 app.use(express.json({limit:'16kb'}));

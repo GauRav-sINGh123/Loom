@@ -44,3 +44,26 @@ export const getUserProfile=asyncHandler(async(req,res)=>{
         user
     })
 })
+
+export const updateUserProfile = asyncHandler(async (req, res) => {
+    const userId = req.user._id;
+    const updates = req.body; // Extract all fields from request body
+
+    // Remove any undefined or empty fields
+    for (const key in updates) {
+        if (updates[key] === undefined || updates[key] === "") {
+            delete updates[key];
+        }
+    }
+
+    const user = await User.findByIdAndUpdate(userId, updates, {
+        new: true,
+        runValidators: true,
+    }).select("-password");
+
+    if (!user) {
+        return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ user, message: "User updated successfully" });
+});

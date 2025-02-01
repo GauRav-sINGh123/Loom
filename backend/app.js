@@ -23,10 +23,12 @@ app.use(cookieParser());
 import AuthRoute from './routes/auth.route.js';
 import UserRoute from './routes/user.route.js';
 import PostRoute from './routes/post.route.js';
+import NotificationRoute from './routes/notification.route.js';
 
 app.use('/api/auth',AuthRoute);
 app.use('/api/users',UserRoute);
 app.use('/api/posts',PostRoute);
+app.use('/api/notifications',NotificationRoute);
  
 
 

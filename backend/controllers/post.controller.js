@@ -129,3 +129,61 @@ export const createComments=asyncHandler(async(req,res)=>{
     }
     res.status(201).json(post)
 })
+
+// export const deleteComment=asyncHandler(async(req,res)=>{
+//     const {postId,commentId}=req.params
+
+//     const post=await Post.findByIdAndUpdate(postId,{
+//         $pull:{
+//             comments:{
+//                 _id:commentId
+//             }
+//         }
+//     },{new:true})
+
+//     if(!post){
+//         return res.status(404).json({
+//             message:"Comment Not Found"
+//         })
+//     }
+
+//     res.status(200).json(post)
+// })
+
+export const likePost=asyncHandler(async(req,res)=>{
+    const postId=req.params.id
+    const userId=req.user._id
+
+    const post=await Post.findById(postId)
+
+    if(!post){
+        return res.status(404).json({
+            message:"Post Not Found"
+        })
+    }
+
+    //Like and Unlike Post
+    if(post.likes.includes(userId)){
+       post.likes= post.likes.filter((id)=>id.toString()!==userId.toString())
+    }else{
+        post.likes.push(userId)
+        
+        //Notifies other users that a like has been made
+        if(post.author.toString()!==userId.toString()){
+
+            const notification=new Notification({
+                recipient:post.author,
+                type:"like",
+                relatedUser:req.user._id,
+                relatedPost:postId
+            })
+    
+            await notification.save() 
+        }
+
+    }
+    await post.save()
+
+    res.status(200).json(post)
+     
+})

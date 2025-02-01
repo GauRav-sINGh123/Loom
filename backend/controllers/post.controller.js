@@ -49,7 +49,7 @@ export const createPost=async(req,res)=>{
 
 // Method to delete a post
 export const deletePost=asyncHandler(async(req,res)=>{
-    const postId=req.params
+    const postId=req.params.id
     const userId=req.user._id
     
     const post=await Post.findById(postId)
@@ -74,4 +74,21 @@ export const deletePost=asyncHandler(async(req,res)=>{
     res.status(200).json({
         message:"Post Deleted"
     })
+})
+
+// Method to get a post
+export const getPost=asyncHandler(async(req,res)=>{
+    const postId=req.params.id
+
+    const post=await Post.findById(postId)
+    .populate("author", "name username profilePicture bio")
+    .populate("comments.user", "name profilePicture username bio")
+
+    if(!post){
+        return res.status(404).json({
+            message:"Post Not Found"
+        })
+    }
+     
+    res.status(200).json(post)
 })

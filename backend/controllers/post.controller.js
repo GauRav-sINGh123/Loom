@@ -1,6 +1,7 @@
 import Post from "../models/post.model.js"
 import { asyncHandler } from "../utils/asyncHandler";
 import cloudinary from "../utils/cloudinary.js";
+import Notification from "../models/notification.model.js";
 
 // Method to get all posts
 export const getAllPosts=asyncHandler(async(req,res)=>{
@@ -91,4 +92,40 @@ export const getPost=asyncHandler(async(req,res)=>{
     }
      
     res.status(200).json(post)
+})
+
+// Method To Create Comment 
+
+export const createComments=asyncHandler(async(req,res)=>{
+    const {postId}=req.paramas
+    const {content}=req.body
+
+    const post=await Post.findByIdAndUpdate(postId,{
+        $push:{
+            comments:{
+                user:req.user._id,
+                content
+            }
+        }
+    },{new:true})
+
+   if(!post){
+       return res.status(404).json({
+           message:"Comment Failed"
+       })
+   }
+
+   //Notifies other users that a comment has been made
+    if(post.author.toString()!==req.user._id){
+
+        const notification=new Notification({
+            recipient:post.author,
+            type:"comment",
+            relatedUser:req.user._id,
+            relatedPost:postId
+        })
+
+        await notification.save() 
+    }
+    res.status(201).json(post)
 })

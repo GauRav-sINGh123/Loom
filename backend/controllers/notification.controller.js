@@ -15,3 +15,15 @@ const getNotifications = asyncHandler(async (req, res) => {
 
   res.status(200).json(notifications)
 })
+
+export const deleteNotification = asyncHandler(async (req, res) => {
+  const notificationId=req.params.id
+
+  const notification=await Notification.findByIdAndDelete(
+  {
+    _id:notificationId,
+    recipient:req.user._id
+  }
+  )
+  res.status(200).json({message:"Notification deleted successfully"})
+})

@@ -116,7 +116,7 @@ export const createComments=asyncHandler(async(req,res)=>{
    }
 
    //Notifies other users that a comment has been made
-    if(post.author.toString()!==req.user._id){
+    if(post.author.toString()!==req.user._id.toString()){
 
         const notification=new Notification({
             recipient:post.author,

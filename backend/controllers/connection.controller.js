@@ -148,3 +148,32 @@ export const removeConnection = asyncHandler(async (req, res) => {
   res.status(200).json({ message: "Connection removed successfully" });
 
 });
+
+export const getConnectionStatus = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+  const connectionId = req.params.id;
+
+  const currentUser =req.user
+  if(currentUser.connections.includes(connectionId)){
+    return res.status(200).json({status:"connected"})
+  }
+  const pendingRequest=await Connection.findOne(
+     {
+      $or: [
+        { sender: userId, recipient: connectionId},
+        { sender: connectionId, recipient: userId },
+      ],
+    }
+  )
+
+  if (pendingRequest) {
+    if (pendingRequest.sender.toString() === userId.toString()) {
+      return res.json({ status: "pending" });
+    } else {
+      return res.json({ status: "received", connectionId: pendingRequest._id });
+    }
+  }
+
+  // if no connection or pending req found
+  res.json({ status: "not_connected" });
+});

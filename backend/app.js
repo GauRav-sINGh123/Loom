@@ -24,7 +24,7 @@ import AuthRoute from './routes/auth.route.js';
 import UserRoute from './routes/user.route.js';
 import PostRoute from './routes/post.route.js';
 import NotificationRoute from './routes/notification.route.js';
-import ConnectionRoute from './routes/connections.route.js';
+import ConnectionRoute from './routes/connection.route.js';
 
 app.use('/api/auth',AuthRoute);
 app.use('/api/users',UserRoute);

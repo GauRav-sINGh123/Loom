@@ -121,3 +121,16 @@ export const getAllConnectionRequests = asyncHandler(async (req, res) => {
 
   res.status(200).json(requests);
 });
+
+
+export const getAllConnections = asyncHandler(async (req, res) => {
+const userId=req.user._id
+
+const connections=await User.findById(userId).populate("connections","name email profilePicture bio username")
+ 
+if(!connections){
+  return res.status(404).json({message:"Connections not found"})
+}
+res.status(200).json(connections)
+
+})

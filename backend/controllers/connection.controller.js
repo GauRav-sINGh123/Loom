@@ -109,3 +109,15 @@ export const rejectConnectionRequest = asyncHandler(async (req, res) => {
 
   }
 )
+
+
+export const getAllConnectionRequests = asyncHandler(async (req, res) => {
+  const userId = req.user._id; // ID of the current user
+
+  const requests = await Connection.find({
+    recipient: userId,
+    status: "pending",
+  }).populate("sender", "name email profilePicture bio username");
+
+  res.status(200).json(requests);
+});

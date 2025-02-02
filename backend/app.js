@@ -30,7 +30,7 @@ app.use('/api/auth',AuthRoute);
 app.use('/api/users',UserRoute);
 app.use('/api/posts',PostRoute);
 app.use('/api/notifications',NotificationRoute);
- 
+app.use('/api/connections',ConnectionRoute);
 
 
 

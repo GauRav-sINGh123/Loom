@@ -134,3 +134,17 @@ if(!connections){
 res.status(200).json(connections)
 
 })
+
+export const removeConnection = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+  const connectionId = req.body.connectionId;
+
+  // Remove the connection from the user's connections list
+  await User.findByIdAndUpdate(userId, {$pull: { connections: connectionId }});
+ 
+  // Remove the user from the connection's connections list
+  await User.findByIdAndUpdate(connectionId, {$pull: { connections: userId }});
+
+  res.status(200).json({ message: "Connection removed successfully" });
+
+});

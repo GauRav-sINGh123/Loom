@@ -17,12 +17,7 @@ const connectionSchema = new Schema({
         default:'pending'
     },
     
-    createdAt:{
-        type:Date,
-        default:Date.now
-    }
-     
-});
+},{timestamps:true});
 
 const Connection = model('Connection',connectionSchema);
 

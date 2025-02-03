@@ -100,7 +100,7 @@ function LoginRight() {
         </form>
         <p className="mt-8 text-center text-sm text-white">
           Don't have an account?{' '}
-          <Link href="/signup" className="font-semibold text-primary hover:underline">
+          <Link href="/signup" className="font-semibold  text-gray-200 hover:underline">
             Sign up
           </Link>
         </p>

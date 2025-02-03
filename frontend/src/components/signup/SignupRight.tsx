@@ -80,7 +80,7 @@ function SignupRight() {
 
       <p className="mt-8 text-center text-sm text-gray-300">
         Already have an account?{' '}
-        <Link href="/signin" className="font-semibold text-primary hover:underline">
+        <Link href="/signin" className="font-semibold text-gray-200 hover:underline">
           Sign in
         </Link>
       </p>

@@ -22,14 +22,14 @@ function Hero() {
           <div className="mx-auto px-6">
             <div className="flex items-center justify-between h-24">
               <div className="flex items-center space-x-3">
-                 
+                 <p className="text-2xl font-bold">Loom</p>
               </div>
                
               <div className="flex items-center space-x-4">
                 <Link href={"/signin"}>
                   <Button
                     variant="ghost"
-                    className="text-zinc-400 hover:text-white hover:bg-zinc-900"
+                    className="text-zinc-400 hover:text-white font-semibold hover:bg-zinc-900"
                   >
                     Login
                   </Button>

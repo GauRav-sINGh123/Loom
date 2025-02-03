@@ -9,7 +9,7 @@ function SignupLeft() {
       layout="fill"
       objectFit="cover"
     />
-    <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-primary-foreground/50" />
+    <div className="absolute inset-0  " />
     <div className="absolute bottom-10 left-10 text-white">
       <h1 className="text-4xl font-bold mb-2">Join our community</h1>
       <p className="text-xl">Start your journey, connect with others</p>

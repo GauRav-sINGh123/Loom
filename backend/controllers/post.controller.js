@@ -1,5 +1,5 @@
 import Post from "../models/post.model.js"
-import { asyncHandler } from "../utils/asyncHandler";
+import { asyncHandler } from "../utils/asyncHandler.js";
 import cloudinary from "../utils/cloudinary.js";
 import Notification from "../models/notification.model.js";
 

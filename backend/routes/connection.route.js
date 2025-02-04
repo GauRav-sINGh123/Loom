@@ -1,7 +1,7 @@
 import express from "express";
 const router=express.Router();
 import {isProtected} from "../middlewares/auth.middleware.js";
-import {sendConnectionRequest,acceptConnectionRequest, rejectConnectionRequest,getAllConnectionRequests,getAllConnections,removeConnection } from "../controllers/connection.controller.js";
+import {sendConnectionRequest,acceptConnectionRequest, rejectConnectionRequest,getAllConnectionRequests,getAllConnections,removeConnection, getConnectionStatus } from "../controllers/connection.controller.js";
 
 router.route('/send_request/:userId').post(isProtected,sendConnectionRequest);
 

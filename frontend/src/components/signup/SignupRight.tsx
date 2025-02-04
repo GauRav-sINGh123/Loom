@@ -21,7 +21,7 @@ function SignupRight() {
    <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
        <div className="w-full max-w-md p-8 rounded-xl backdrop-blur-md shadow-xl ">
        <div className="flex flex-col space-y-2 text-center">
-             <h1 className="text-2xl font-semibold tracking-tight text-white">  Create your account and start sharing the joy</h1>
+             <h1 className="text-2xl font-semibold tracking-tight text-white">  Create your account and start <span className='bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent'>sharing the joy</span> </h1>
              <p className="text-sm text-white">
              Join the celebration
              </p>

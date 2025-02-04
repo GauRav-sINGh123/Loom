@@ -52,7 +52,7 @@ function LoginRight() {
       <div className="w-full max-w-md p-8 rounded-xl backdrop-blur-md shadow-xl">
         <div className="flex flex-col space-y-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight text-white">
-            Welcome to the party!
+            Welcome to  <span className="bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">the party!</span>
           </h1>
           <p className="text-sm text-white">Sign in to join the fun</p>
         </div>

@@ -1,7 +1,7 @@
 import express from "express"
 const router=express.Router()
-import {isProtected} from '../middlewares/auth.middleware'
-import { getAllPosts,createPost,deletePost,getPost,createComments,likePost} from "../controllers/post.controller"
+import {isProtected} from '../middlewares/auth.middleware.js'
+import { getAllPosts,createPost,deletePost,getPost,createComments,likePost} from "../controllers/post.controller.js"
 
 router.route('/posts').get(isProtected,getAllPosts)
 

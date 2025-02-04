@@ -46,7 +46,7 @@ function Hero() {
         </nav>
 
         {/* Hero Content */}
-        <div className="relative px-6 pt-10 pb-40">
+        <div className="relative px-6 pt-6 pb-40">
           <div className="max-w-5xl mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-between gap-12">
               <div className="flex-1 space-y-8">

@@ -1,7 +1,7 @@
 import { asyncHandler } from '../utils/asyncHandler.js'
 import Notification from '../models/notification.model.js'
 
-const getNotifications = asyncHandler(async (req, res) => {
+export const getNotifications = asyncHandler(async (req, res) => {
   const userId=req.user._id
 
   const notifications=await Notification.find({user:userId})

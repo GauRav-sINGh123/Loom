@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Home, User, LogOut } from "lucide-react";
+import { Home, User, LogOut, Combine } from "lucide-react";
 import Link from "next/link";
 
 export function Navigation() {
@@ -11,15 +11,21 @@ export function Navigation() {
             Loom
           </Link>
           <div className="md:hidden flex items-center space-x-2">
+            <Link href={"/"}>
             <Button variant="ghost" size="icon" className="w-8 h-8 text-gray-400 hover:text-white hover:bg-white/10">
               <Home className="h-4 w-4" />
             </Button>
+            </Link>
+            <Link href={"/profile"}>
             <Button variant="ghost" size="icon" className="w-8 h-8 text-gray-400 hover:text-white hover:bg-white/10">
               <User className="h-4 w-4" />
             </Button>
+            </Link>
+            <Link href="/connect">
             <Button variant="ghost" size="icon" className="w-8 h-8 text-gray-400 hover:text-white hover:bg-white/10">
-              <LogOut className="h-4 w-4" />
+              < Combine className="h-4 w-4" />
             </Button>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Home, User, LogOut, Combine } from "lucide-react";
 import Link from "next/link";
+import LogoutMain from "./LogoutMain";
 
 export function Navigation() {
   return (
@@ -26,6 +27,7 @@ export function Navigation() {
               < Combine className="h-4 w-4" />
             </Button>
             </Link>
+            <LogoutMain/>
           </div>
         </div>
       </div>

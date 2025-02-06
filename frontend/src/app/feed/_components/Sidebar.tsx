@@ -3,7 +3,7 @@ import { Home, User, LogOut } from "lucide-react";
 
 export function Sidebar() {
   return (
-    <div className="hidden lg:block col-span-2">
+    <div className="hidden md:block col-span-2">
       <div className="sticky top-16 space-y-6">
         <nav className="space-y-1">
           <Button variant="ghost" size="sm" className="w-full justify-start text-white hover:bg-white/10">

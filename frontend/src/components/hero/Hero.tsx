@@ -68,7 +68,7 @@ function Hero() {
                   digital storytelling and social connection.
                 </p>
                 <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6">
-                  <Link href={"/signup"}>
+                  <Link href={"/feed"}>
                     <Button
                       size="lg"
                       className="py-4 px-6 bg-gradient-to-r from-cyan-500 to-teal-500 font-semibold hover:from-cyan-600 hover:to-teal-600 w-auto"

@@ -30,7 +30,7 @@ const suggestedUsers = [
 
 export function SuggestedUsers() {
   return (
-    <div className="hidden md:block col-span-3">
+    <div className="hidden lg:block col-span-3">
       <div className="sticky top-16 space-y-4">
         <Card className="bg-white/5 border-white/5 p-3 backdrop-blur-sm">
           <h2 className="text-sm font-medium text-white mb-4">Suggested Users</h2>

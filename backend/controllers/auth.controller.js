@@ -111,18 +111,19 @@ export const signup = asyncHandler(async (req, res) => {
 });
 
 export const logout = asyncHandler(async (req, res) => {
-  res.clearCookie("token", {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
-  });
   
-  res.status(200).json({
-    success: true,
-    message: "User logged out successfully",
+  res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
   });
 
+  res.status(200).json({
+      success: true,
+      message: "User logged out successfully",
+  });
 });
+
 
 
 export const getCurrentUser = asyncHandler(async (req, res) => {

@@ -10,9 +10,10 @@ export default function middleware(req: NextRequest) {
 
   // Redirect unauthenticated users to login
   if (protectedRoutes.includes(req.nextUrl.pathname) && !token) {
-    return NextResponse.redirect(new URL("/signin", req.url));
-  }
-
+    const response = NextResponse.redirect(new URL("/signin", req.url));
+    response.headers.set("Cache-Control", "no-store"); // Prevent caching
+    return response;
+ }
   return NextResponse.next(); // Continue request if authenticated
 }
 

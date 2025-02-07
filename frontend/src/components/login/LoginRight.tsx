@@ -40,8 +40,11 @@ function LoginRight() {
         data,
         { withCredentials: true }
       );
+      if(res.status !== 200) {
+      throw new Error("Something went wrong!");
+      }
+      router.replace("/feed");
       toast.success("Login successful!");
-      router.push("/feed");
     } catch (err:any) {
       toast.error("Login failed!");
     }

@@ -92,6 +92,7 @@ function Hero() {
                   alt={"Creative Collaboration"}
                   height={800}
                   width={1200}
+                  priority
                   className="relative rounded-3xl shadow-2xl transform -rotate-6 hover:rotate-0 transition-transform duration-500"
                 />
               </div>

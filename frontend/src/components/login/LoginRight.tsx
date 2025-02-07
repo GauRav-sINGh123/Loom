@@ -52,6 +52,9 @@ function LoginRight() {
 
   return (
     <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
+      <Link href={"/"} className="absolute top-4 right-4 text-[13px] text-white hover:underline">
+        Back to Home
+      </Link>
       <div className="w-full max-w-md p-8 rounded-xl backdrop-blur-md shadow-xl">
         <div className="flex flex-col space-y-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight text-white">

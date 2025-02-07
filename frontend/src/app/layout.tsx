@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { Inter } from "next/font/google";
-import { QueryClientProvider, useQueryClient } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const queryClient = useQueryClient();
+const queryClient = new QueryClient(); // ✅ Create a new instance of QueryClient
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,12 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <QueryClientProvider client={queryClient}>
-        <body className={inter.className}>
+      <body className={inter.className}>
+        <QueryClientProvider client={queryClient}>
           <Toaster />
           {children}
-        </body>
-      </QueryClientProvider>
+        </QueryClientProvider>
+      </body>
     </html>
   );
 }

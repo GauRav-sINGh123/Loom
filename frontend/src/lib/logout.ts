@@ -4,13 +4,13 @@ import { toast } from "sonner";
 
 export const logout = async () => {
     try {
-        await axios.post(
+        const res=await axios.post(
           `${process.env.NEXT_PUBLIC_SERVER_AUTH_URL}/logout`,
           {},
           { withCredentials: true } // ✅ Ensures cookies are included in the request
         );
         
-        toast.success("Logged out successfully");
+       return res.data;
        
       } catch (error: any) {
         toast.error("Failed to logout");

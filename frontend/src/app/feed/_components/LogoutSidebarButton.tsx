@@ -3,14 +3,16 @@ import { Button } from "@/components/ui/button";
 import { logout } from "@/lib/logout";
 import { LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
- 
- 
+import { toast } from "sonner"; 
 
 function LogoutSidebarButton() {
   const router=useRouter();
-  const handleLogout = () => {
-     logout()
-    router.push("/");
+  const handleLogout = async() => {
+    const data= await logout()
+    if(!data) {
+     toast.error("Failed to logout");
+    }
+    router.replace("/signin");
   };
   return (
     <Button
